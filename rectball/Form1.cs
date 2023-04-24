@@ -2,27 +2,27 @@ namespace rectball
 {
     public partial class Form1 : Form
     {
-        Graphics g;
+        Painter p;
         bool flag = false;
 
 
         public Form1()
         {
             InitializeComponent();
-            g = panel1.CreateGraphics();
+            DB DataBase = new DB();
+            DataBase.Truncate();
+            p = new Painter(panel1.CreateGraphics(), DataBase);
+            p.Start();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            /*Rect r = new Rect(10, 10, 30, 30, Color.Aqua);
-            r.Paint(g);*/
-
             flag = true;
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
-            
+
 
         }
 
@@ -30,11 +30,15 @@ namespace rectball
         {
             if (flag)
             {
-                Rect r = new Rect(e.X, e.Y, 30, 30);
-                r.Paint(g);
                 flag = false;
+                p.AddRect(e);
             }
 
+        }
+
+        private void panel1_Resize(object sender, EventArgs e)
+        {
+            p.MainGraphics = panel1.CreateGraphics();
         }
     }
 }

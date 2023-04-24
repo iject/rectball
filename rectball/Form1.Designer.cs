@@ -34,15 +34,18 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = Color.White;
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
             panel1.Size = new Size(776, 360);
             panel1.TabIndex = 0;
             panel1.MouseClick += panel1_MouseClick;
+            panel1.Resize += panel1_Resize;
             // 
             // button1
             // 
+            button1.Anchor = AnchorStyles.Bottom;
             button1.Location = new Point(353, 401);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
